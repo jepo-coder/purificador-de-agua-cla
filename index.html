@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Purificador de Agua | Colegio Las Américas</title>
+<meta name="description" content="Maqueta funcional de filtración de agua con mini bomba. Proyecto de Física Fundamental, Biología y Robótica.">
+<meta name="theme-color" content="#06203f"><meta property="og:type" content="website"><meta property="og:title" content="Purificador de Agua | Colegio Las Américas"><meta property="og:description" content="Maqueta de filtración con mini bomba y simulador interactivo."><meta property="og:image" content="https://jepo-coder.github.io/purificador-cla/assets/maqueta.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E💧%3C/text%3E%3C/svg%3E">
+<style>
+:root{--navy:#0b2a4a;--blue:#1565c0;--blue2:#0d47a1;--sky:#42a5f5;--cyan:#19d3f0;--ice:#f1f7ff;--ink:#16304d;--line:#d6e6f8;--sh:0 10px 30px rgba(21,101,192,.12)}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;font:17px/1.65 "Segoe UI",system-ui,-apple-system,sans-serif;color:var(--ink);background:#fff}
+h1,h2,h3{color:var(--navy);line-height:1.2;font-weight:800}h1{font-size:clamp(2.2rem,5vw,3.4rem);margin:.3em 0}h2{font-size:2rem;margin:0 0 1.2rem;text-align:center}h3{margin:1.2em 0 .4em;font-size:1.15rem}
+h2::after{content:"";display:block;width:56px;height:4px;border-radius:4px;background:var(--sky);margin:.5rem auto 0}
+.nav{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;padding:.8rem 6%;background:rgba(255,255,255,.93);backdrop-filter:blur(10px);box-shadow:0 2px 14px rgba(11,42,74,.08)}
+.nav a{color:var(--navy);text-decoration:none;margin-left:1.6rem;font-weight:600;font-size:.98rem;padding:.2rem 0;border-bottom:3px solid transparent}.nav .brand{margin:0;font-weight:800;font-size:1.2rem;color:var(--blue);border:0}.nav a:hover,.nav a.act{color:var(--blue);border-bottom-color:var(--sky)}
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+#bar{position:fixed;top:0;left:0;height:4px;width:0;background:var(--sky);z-index:9}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:2.5rem;align-items:center;padding:4.5rem 6%;background:radial-gradient(circle at 85% 15%,#d6ebff,transparent 50%),linear-gradient(180deg,#e9f4ff,#fff)}
+.eyebrow{color:var(--blue);font-weight:800;letter-spacing:.14em;font-size:.85rem;margin:0}.lead{font-size:1.15rem;color:#35526f}
+.cta{display:flex;gap:.8rem;flex-wrap:wrap;margin:1.4rem 0}
+.btn{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;border:0;border-radius:999px;padding:.8rem 1.7rem;font:600 1rem inherit;font-family:inherit;cursor:pointer;box-shadow:0 6px 16px rgba(21,101,192,.3);transition:transform .15s,background .15s}.btn:hover{background:var(--blue2);transform:translateY(-2px)}
+.btn.alt2{background:#fff;color:var(--blue);border:2px solid var(--blue);box-shadow:none}.btn.ghost2{background:var(--ice);color:var(--blue);box-shadow:none;padding:.5rem 1.2rem;margin-top:.6rem}.btn.sm{padding:.3rem .9rem;font-size:.85rem}.btn.ghost{background:transparent;border:2px solid var(--sky);box-shadow:none}
+.warn{background:#fff8e1;color:#5d4500;border-left:5px solid #f5b400;padding:.7rem 1rem;border-radius:10px;font-size:.93rem}
+.demo{margin:0;background:#fff;border-radius:24px;box-shadow:var(--sh);padding:1.2rem;text-align:center;border:1px solid var(--line)}.demo svg{width:100%;max-width:360px;display:block;margin:auto;cursor:pointer}
+.jar{fill:#fff;stroke:#7fb6ee;stroke-width:3}.tube{fill:none;stroke:var(--sky);stroke-width:5;opacity:.7}.lbl{font:600 12px sans-serif;text-anchor:middle;fill:var(--navy)}.lbl.w{fill:#fff}
+figcaption{font-size:.82rem;color:#5a7794;margin-top:.4rem}
+.wrap{padding:4.5rem 6%}.wrap>*{max-width:1000px;margin-left:auto;margin-right:auto}main>section:nth-of-type(even){background:var(--ice)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.4rem}.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.4rem}
+.box{background:#fff;border-radius:20px;padding:1.4rem 1.6rem;box-shadow:var(--sh);border:1px solid var(--line)}.box h3{margin-top:0}.feat{text-align:center}.feat i{display:grid;place-items:center;width:60px;height:60px;margin:0 auto .6rem;border-radius:50%;background:var(--ice);font-size:1.8rem;font-style:normal}
+.chips{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center}.chips li{background:#dcecff;color:var(--blue2);font-weight:600;border-radius:999px;padding:.35rem 1rem;font-size:.92rem}
+.tabs{display:flex;gap:.5rem;margin-bottom:1rem;justify-content:center}.tabs button{border:2px solid var(--blue);background:#fff;color:var(--blue);border-radius:999px;padding:.5rem 1.4rem;cursor:pointer;font:600 1rem inherit;font-family:inherit}.tabs .on{background:var(--blue);color:#fff}
+.panel{display:none;background:#fff;border-radius:20px;padding:1.2rem 1.6rem;box-shadow:var(--sh)}.panel.on{display:block}.flow{font-weight:800;color:var(--blue);font-size:1.15rem;text-align:center}
+.cols{display:grid;grid-template-columns:1fr 1.3fr;gap:2rem}.small{font-size:.88rem;color:#5a7794}
+.check{list-style:none;padding:0}.check li{padding:.25rem 0}.check label{cursor:pointer}.check input{accent-color:var(--blue)}.check input:checked+span{text-decoration:line-through;color:#8aa6c4}
+.steps{padding-left:1.3rem}.steps li{margin:.5rem 0;cursor:pointer}.steps li.done{color:#8aa6c4}.steps li::marker{color:var(--blue);font-weight:800}.steps li b{color:var(--blue)}
+table{border-collapse:separate;border-spacing:0;width:100%;font-size:.95rem;background:#fff;border-radius:14px;overflow:hidden;box-shadow:var(--sh)}th,td{padding:.65rem .9rem;text-align:left;border-bottom:1px solid var(--line)}th{background:var(--blue);color:#fff;text-transform:uppercase;font-size:.8rem;letter-spacing:.06em}tr:last-child td{border:0}
+.team{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.2rem}.team li{background:#fff;border-radius:20px;padding:1.3rem 1rem;text-align:center;box-shadow:var(--sh);border:1px solid var(--line)}.team em{display:grid;place-items:center;width:70px;height:70px;margin:0 auto .6rem;border-radius:50%;background:var(--ice);font-size:2rem;font-style:normal}.team b{display:block}.team span{display:block;font-size:.9rem;color:#5a7794}[contenteditable]:hover{outline:2px dashed var(--sky);border-radius:4px}
+.lab{align-items:center;display:grid;grid-template-columns:1.6fr 1fr;gap:1.2rem;background:#071a33;border-radius:22px;padding:1.3rem;box-shadow:0 14px 40px rgba(7,26,51,.35);color:#dff0ff;max-width:1000px}
+.lab canvas{width:100%;height:auto;border-radius:14px;background:radial-gradient(circle at 50% 30%,#0f3a75,#061426)}
+.panel2 label{display:block;margin:.7rem 0}.panel2 input[type=range]{width:100%;accent-color:var(--cyan)}.panel2 b{color:var(--cyan)}.panel2 .btn{margin-right:.4rem}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:1rem 0}.stats div{background:rgba(66,165,245,.14);border-radius:12px;padding:.4rem .7rem}.stats dt{font-size:.75rem;color:#8fc4f5}.stats dd{margin:0;font-weight:800;font-size:1.4rem;color:#fff}.lab .small{color:#9ec6ee}
+.esc{display:flex;gap:.4rem;flex-wrap:wrap;margin:.6rem 0}.esc button{background:rgba(66,165,245,.15);color:#dff0ff;border:1px solid var(--sky);border-radius:999px;padding:.3rem .8rem;cursor:pointer;font:inherit;font-size:.9rem}.esc .on{background:var(--cyan);color:var(--navy);font-weight:700}
+.badge{font-weight:800;font-size:1.05rem;margin:.6rem 0}#hist{width:100%;height:auto;border-radius:14px;display:block}.lab+h3{text-align:center}
+.rule{font:14px Consolas,monospace;background:#061426;color:#cfe8ff;padding:.7rem 1rem;border-radius:12px}
+.code{position:relative}.code .btn{position:absolute;right:10px;top:10px}.code pre{background:#0b1c30;color:#cfe8ff;padding:1.3rem;border-radius:16px;overflow-x:auto;font:14px/1.5 Consolas,monospace;margin:0 auto 1.4rem}
+.big{font-size:1.3rem;font-weight:700;color:var(--navy);margin-top:2rem;text-align:center}
+.gal{display:grid;grid-template-columns:1fr 1.6fr;gap:1.5rem;align-items:start}.gal figure{margin:0}.gal img{width:100%;height:auto;border-radius:18px;box-shadow:var(--sh);cursor:zoom-in}
+details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:.7rem 1.1rem;margin:.6rem auto;box-shadow:0 4px 12px rgba(21,101,192,.06)}summary{cursor:pointer;font-weight:700;color:var(--navy)}.bib{font-size:.92rem}
+.frm{max-width:560px!important}.frm label{display:block;margin:.8rem 0;font-weight:600}.frm input,.frm textarea{display:block;width:100%;margin-top:.3rem;padding:.7rem .9rem;border:1px solid var(--line);border-radius:12px;font:inherit}
+footer{background:linear-gradient(135deg,var(--blue2),var(--sky));color:#fff;text-align:center;padding:3rem 6%}footer h3{color:#fff;font-size:1.4rem;margin:0 0 .4rem}footer p{margin:0;opacity:.9}
+#lb{position:fixed;inset:0;background:rgba(6,20,38,.93);display:none;place-items:center;z-index:20;cursor:zoom-out}#lb.on{display:grid}#lb img{max-width:92vw;max-height:92vh;border-radius:8px}
+#top{position:fixed;right:1.2rem;bottom:1.2rem;width:46px;height:46px;border:0;border-radius:50%;background:var(--blue);color:#fff;font-size:1.3rem;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.3);opacity:0;pointer-events:none;transition:opacity .3s;z-index:6}#top.on{opacity:1;pointer-events:auto}
+@media(max-width:800px){.hero,.cols,.lab,.gal{grid-template-columns:1fr}.nav a{margin-left:.9rem;font-size:.88rem}.nav{justify-content:center}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<header class="nav"><a class="brand" href="#inicio">💧 Purificador</a>
+<nav><a href="#inicio">Inicio</a><a href="#nosotros">Filosofía</a><a href="#simulador">Soluciones &amp; Python</a><a href="#contacto">Contacto</a></nav></header>
+
+<main>
+<section id="inicio" class="hero"><div class="hero-text"><p class="eyebrow">PURIFICADOR DE AGUA</p><h1>Agua más limpia con ciencia y tecnología</h1><p class="lead">Una maqueta que filtra las partículas visibles del agua con piedras, algodón y una mini bomba, y une la Física, la Biología y la Robótica.</p><div class="cta"><a class="btn" href="#simulador">Ver simulación</a><a class="btn alt2" href="#problema">Conocer el proyecto</a></div><p class="warn"><b>Importante:</b> el agua de la maqueta no es potable. El filtro solo reduce partículas visibles.</p><p class="small">Colegio Las Américas · Física Fundamental · Docente Ronny Esquivel</p></div>
+<figure class="demo" aria-label="Animación del filtro">
+<svg viewBox="0 0 320 380" id="filtro">
+<rect x="10" y="150" width="70" height="200" rx="8" class="jar"/><rect id="sucia" x="14" y="200" width="62" height="146" rx="5" fill="#a98b5f"/>
+<text x="45" y="368" class="lbl">Agua turbia</text>
+<rect x="120" y="40" width="80" height="250" rx="12" class="jar"/>
+<rect x="124" y="44" width="72" height="80" rx="8" fill="#8d8a84"/><text x="160" y="90" class="lbl w">Piedras</text>
+<rect x="124" y="124" width="72" height="60" fill="#23323b"/><text x="160" y="159" class="lbl w">Carbón*</text>
+<rect x="124" y="184" width="72" height="102" rx="8" fill="#f4f6f7"/><text x="160" y="240" class="lbl n">Algodón</text>
+<rect x="240" y="230" width="70" height="120" rx="8" class="jar"/><rect id="limpia" x="244" y="340" width="62" height="6" rx="4" fill="#7fd1e0"/>
+<text x="275" y="368" class="lbl">Agua filtrada</text>
+<path d="M45 150 V20 H160 V40" class="tube"/><path d="M160 290 V320 H275 V250" class="tube"/>
+<circle id="gota" r="5" fill="#1aa6b7" cx="160" cy="20" opacity="0"/>
+</svg>
+<button id="btnDemo" class="btn ghost2">Encender la bomba</button>
+<figcaption>👆 Toca la escena para bombear · *Carbón activado: opcional</figcaption>
+</figure></section>
+
+<section class="wrap"><div class="grid3"><article class="box feat"><i>💧</i><h3>Filtrado físico</h3><p>Piedras y algodón retienen las partículas visibles.</p></article><article class="box feat"><i>⚙️</i><h3>Bomba y circuito</h3><p>Fuente, interruptor y mini bomba mueven el agua.</p></article><article class="box feat"><i>🔬</i><h3>Tres áreas</h3><p>Física, Biología y Robótica en una sola maqueta.</p></article></div></section>
+
+<section id="problema" class="wrap">
+<h2>El problema</h2>
+<p>El agua puede contaminarse con tierra, basura, partículas, sustancias químicas y microorganismos. A veces el agua que se ve sucia tiene partículas que se pueden separar con procesos físicos. Este proyecto quiere mostrarlo con una maqueta y una bomba eléctrica.</p>
+<div class="grid2">
+<article class="box"><h3>Pregunta de investigación</h3><p>¿Cómo puede construirse un prototipo de purificador de agua con materiales filtrantes y un sistema de bombeo eléctrico, aplicando Física Fundamental, Biología y Robótica?</p></article>
+<article class="box"><h3>Hipótesis</h3><p>Si el agua con partículas visibles atraviesa algodón y piedras y una mini bomba favorece su circulación, entonces disminuirán las partículas visibles y el agua se verá más limpia.</p></article>
+</div>
+<h3>Objetivos</h3>
+<p><b>General:</b> construir un prototipo funcional que demuestre un proceso básico de filtración y circulación del líquido, integrando Física, Biología y Robótica.</p>
+<ul class="chips"><li>Identificar presión, gravedad, flujo y transformación de energía</li><li>Explicar la importancia biológica del agua</li><li>Implementar un circuito con fuente, cables, interruptor y bomba</li><li>Demostrar cómo algodón y piedras retienen partículas</li><li>Promover materiales reutilizables</li></ul>
+</section>
+
+<section id="nosotros" class="wrap alt"><h2>Quiénes somos</h2>
+<div class="grid2"><article class="box"><h3>🎯 Misión</h3><p>Construir una maqueta funcional que muestre cómo se filtra el agua con materiales sencillos y una bomba eléctrica, explicando con claridad sus alcances y sus límites.</p></article>
+<article class="box"><h3>🔭 Visión</h3><p>Ser un proyecto educativo que demuestre cómo la ciencia y la tecnología pueden plantear soluciones sencillas a problemas ambientales.</p></article></div>
+<h3>Valores</h3><ul class="chips"><li>Curiosidad científica</li><li>Responsabilidad</li><li>Sostenibilidad</li><li>Trabajo en equipo</li><li>Honestidad científica</li></ul>
+<h2 style="margin-top:2rem">Impacto sociocultural</h2>
+<div class="grid2"><article class="box"><h3>Menos partículas visibles</h3><p>Muestra cómo retirar partículas del agua con materiales simples.</p></article><article class="box"><h3>Conciencia del agua</h3><p>Ayuda a entender por qué hay que cuidar las fuentes de agua.</p></article><article class="box"><h3>Materiales reutilizables</h3><p>Usa botellas, cartón y piedras de fácil acceso.</p></article><article class="box"><h3>Educación científica</h3><p>Une Física, Biología y Robótica en un proyecto práctico.</p></article></div></section>
+
+<section id="equipo" class="wrap">
+<h2>Equipo</h2>
+<p class="small">Haz clic sobre un nombre o rol para editarlo.</p>
+<ul class="team"><li><em>🧑‍🔬</em><b contenteditable>Andy Salazar</b><span contenteditable>Rol: Coordinador</span></li><li><em>👩‍🔬</em><b contenteditable>María Reneé Pu</b><span contenteditable>Rol: (clic para editar)</span></li><li><em>👨‍💻</em><b contenteditable>Kesler Kerth</b><span contenteditable>Rol: (clic para editar)</span></li><li><em>🧑‍🎨</em><b contenteditable>Addam López</b><span contenteditable>Rol: (clic para editar)</span></li><li><em>👩‍🎓</em><b contenteditable>Adriana Sandoval</b><span contenteditable>Rol: (clic para editar)</span></li><li><em>🧑‍🌾</em><b contenteditable>Paolo Zacarías</b><span contenteditable>Rol: (clic para editar)</span></li></ul>
+</section>
+
+<section id="funciona" class="wrap alt"><h2>Cómo funciona</h2><div class="cols"><ol class="steps"><li>Se activa el <b>interruptor</b>.</li><li>La <b>mini bomba</b> convierte energía eléctrica en movimiento.</li><li>El agua turbia sube por la manguera hasta el filtro.</li><li>Las <b>piedras</b> atrapan partículas grandes y el <b>algodón</b> las pequeñas.</li><li>El agua sale al recipiente final con menos partículas visibles.</li></ol>
+<table><tr><th>Componente</th><th>Función</th></tr><tr><td>Mini bomba</td><td>Mueve el agua por las mangueras.</td></tr><tr><td>Interruptor</td><td>Enciende y apaga el circuito.</td></tr><tr><td>Fuente o batería</td><td>Da la energía eléctrica.</td></tr><tr><td>Piedras</td><td>Retienen partículas grandes.</td></tr><tr><td>Algodón</td><td>Retiene partículas más pequeñas.</td></tr><tr><td>Carbón activado (opcional)</td><td>Ayuda con olores y algunas impurezas.</td></tr><tr><td>Mangueras</td><td>Conducen el agua entre recipientes.</td></tr></table></div></section>
+
+<section id="areas" class="wrap">
+<h2>Tres áreas en una maqueta</h2>
+<div class="tabs" role="tablist"><button class="on" data-t="fis">Física</button><button data-t="bio">Biología</button><button data-t="rob">Robótica</button></div>
+<div class="panel on" id="fis"><p>La mini bomba transforma energía eléctrica en energía mecánica y genera una diferencia de presión que mueve el agua por las mangueras. La gravedad actúa cuando el agua baja de un nivel superior a uno inferior.</p><p>El flujo cambia con el diámetro de la manguera, la altura de los recipientes, las obstrucciones y la potencia de la bomba.</p></div>
+<div class="panel" id="bio"><p>Todos los organismos necesitan agua. Si una fuente se contamina, se afectan personas, animales, plantas y microorganismos.</p><p>Las piedras y el algodón filtran físicamente según el tamaño de la partícula. <b>Agua transparente no significa agua potable</b>: filtrar no es lo mismo que potabilizar.</p></div>
+<div class="panel" id="rob"><p class="flow">Fuente → Interruptor → Mini bomba → Circulación del agua</p><p>No usa programación, pero muestra los principios de la automatización: entrada de energía, circuito, control (interruptor) y actuador (bomba).</p></div>
+</section>
+
+<section id="proceso" class="wrap">
+<h2>Materiales y construcción</h2>
+<div class="cols">
+<div><h3>Materiales <span id="prog" class="small"></span></h3><ul id="mats" class="check"></ul></div>
+<div><h3>Procedimiento</h3><ol id="pasos" class="steps"></ol></div>
+</div>
+</section>
+
+<section id="galeria" class="wrap"><h2>Galería de la maqueta</h2><p>Toca una imagen para verla en grande.</p>
+<div class="gal"><figure><img src="assets/maqueta.jpg" alt="Maqueta del purificador: botella con agua turbia, filtro de piedras, carbón y algodón, y recipiente de agua filtrada" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>La maqueta terminada</figcaption></figure>
+<figure><img src="assets/anexo.jpg" alt="Infografía del proyecto con materiales, proceso de filtración, circuito eléctrico y áreas de estudio" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>Infografía: materiales, filtrado, circuito y áreas de estudio</figcaption></figure></div></section>
+
+<section id="simulador" class="wrap alt">
+<h2>Simulador del filtro</h2>
+<p>Enciende la bomba y mira cómo las partículas sucias suben por la manguera, cruzan las capas y quedan atrapadas. Es una <b>simulación didáctica</b>: no son datos medidos de la maqueta.</p>
+<div class="lab">
+<canvas id="cv" width="640" height="450" aria-label="Simulación del filtro de agua"></canvas>
+<div class="panel2">
+<button id="pw" class="btn">⏻ Encender bomba</button><button id="rs" class="btn ghost">Reiniciar</button>
+<label>Algodón <b id="vA">4</b><input id="rA" type="range" min="1" max="10" value="4"></label>
+<label>Piedras <b id="vP">5</b><input id="rP" type="range" min="1" max="10" value="5"></label>
+<label>Potencia de la bomba <b id="vB">5</b><input id="rB" type="range" min="1" max="10" value="5"></label>
+<label><input type="checkbox" id="cC"> Agregar carbón activado</label>
+<div class="esc"><button data-e=".5">🌤️ Poco turbia</button><button data-e="1" class="on">🌫️ Turbia</button><button data-e="2">🟤 Muy turbia</button></div><p id="est" class="badge"></p>
+<dl class="stats"><div><dt>Partículas entraron</dt><dd id="sIn">0</dd></div><div><dt>Retenidas</dt><dd id="sRet">0</dd></div><div><dt>Pasaron</dt><dd id="sOut">0</dd></div><div><dt>Retención</dt><dd id="sEf">0%</dd></div><div><dt>Flujo estimado</dt><dd id="sFl">0</dd></div><div><dt>Saturación</dt><dd id="sCl">0%</dd></div></dl>
+<p id="msg" class="small"></p>
+</div></div>
+<h3>Historial de retención (línea punteada = meta 60 %)</h3><canvas id="hist" width="640" height="110"></canvas>
+<p class="rule">SI saturación ≥ 80 % → cambiar el algodón<br>SI saturación &lt; 80 % → el filtro sigue trabajando</p>
+</section>
+
+<section id="python" class="wrap">
+<h2>Modelo en Python</h2>
+<p>Programación orientada a objetos: cada parte del sistema es una clase. Usa las mismas probabilidades del simulador.</p>
+<div class="code"><button id="copy" class="btn sm">Copiar</button><pre id="cod"></pre></div>
+<div class="grid2"><article class="box"><h3>CapaFiltrante</h3><p>Una capa (piedras, carbón o algodón) con su probabilidad de retener cada tamaño.</p></article><article class="box"><h3>Bomba</h3><p>Guarda si está encendida o apagada.</p></article><article class="box"><h3>Purificador</h3><p>Es el controlador: si la bomba está encendida, prueba cada capa.</p></article><article class="box"><h3>filtrar()</h3><p>Devuelve dónde quedó la partícula: retenida en una capa o en el agua filtrada.</p></article></div>
+</section>
+
+<section id="resultados" class="wrap alt">
+<h2>Resultados y conclusiones</h2>
+<div class="grid3">
+<article class="box"><h3>Observaciones</h3><ul><li>La bomba mueve el agua de forma continua.</li><li>Demasiado algodón compactado reduce el flujo.</li><li>Las conexiones deben sellarse bien.</li><li>Los componentes eléctricos deben estar lejos del agua.</li></ul></article>
+<article class="box"><h3>Resultados</h3><ul><li>Parte de las partículas quedó en piedras y algodón.</li><li>El agua recolectada se vio más limpia.</li><li>El interruptor encendió y apagó la bomba.</li></ul></article>
+<article class="box"><h3>Limitación</h3><p>No se analizaron microorganismos ni sustancias químicas. Para agua apta para consumo hacen falta tratamiento, desinfección y control de calidad (CDC, 2025).</p></article>
+</div>
+<p class="big">La hipótesis se aceptó a nivel experimental: hubo menos partículas visibles y mejor apariencia del agua.</p>
+</section>
+
+<section id="contacto" class="wrap alt"><h2>Contacto</h2><form id="frm" class="frm"><label>Nombre<input required></label><label>Correo<input type="email" required></label><label>Mensaje<textarea rows="4" required></textarea></label><button class="btn">Enviar mensaje</button><p id="ok" class="small"></p></form></section>
+
+<section id="faq" class="wrap"><h2>Preguntas frecuentes</h2>
+<details><summary>¿Puedo beber el agua filtrada?</summary><p>No. La maqueta solo reduce partículas visibles y no elimina microorganismos ni químicos.</p></details>
+<details><summary>¿Por qué se usa una bomba?</summary><p>Para mostrar cómo la energía eléctrica se convierte en movimiento del agua y cómo un interruptor controla un actuador.</p></details>
+<details><summary>¿Qué diferencia hay entre filtrar y potabilizar?</summary><p>Filtrar separa partículas físicamente. Potabilizar aplica tratamientos suficientes para que el agua sea segura según criterios sanitarios.</p></details>
+<details><summary>¿Qué materiales usaron?</summary><p>Botellas, piedras, algodón, mangueras, cartón, mini bomba, interruptor y una fuente compatible. Carbón activado es opcional.</p></details>
+<details><summary>¿Los datos del simulador son reales?</summary><p>No. Es una simulación didáctica; las probabilidades son un modelo para explicar la idea, no mediciones de la maqueta.</p></details>
+<h3>Bibliografía</h3>
+<ul class="bib"><li>CDC. (2025, 26 de agosto). <i>Acerca de los sistemas de tratamiento del agua para la casa.</i></li><li>CDC. (2025, 26 de agosto). <i>Acerca de cómo elegir filtros de agua para la casa.</i></li><li>OMS. (2023, 13 de septiembre). <i>Agua para consumo humano.</i></li></ul>
+</section>
+</main>
+<footer><h3>Gracias por visitar nuestro proyecto de Feria Científica.</h3><p>Purificador de Agua · Colegio Las Américas · Proyecto educativo · Simulación web</p></footer>
+<button id="top" aria-label="Volver arriba">↑</button><div id="lb"><img alt=""></div>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+/* Materiales y pasos */
+const mats=["Cartón","Botellas o frascos de plástico vacíos","Papel cartulina","Alambre galvanizado calibre 16 (~100 g)","Pistola y barras de silicón","Masilla epóxica tipo M-Seal","Manguera transparente de 6–7 mm, 3 m","Mini bomba de agua","Interruptor","Batería o fuente compatible con la bomba","Cables eléctricos","Adaptador DC o cargador compatible","Pegamento blanco e instantáneo","Algodón","Piedras de diferentes tamaños","Árboles artificiales","Agua y recipiente para prepararla","Tierra limpia u otro material inocuo"];
+const pasos=[["Preparar la base","Cortar cartón y forrarlo con cartulina."],["Planificar","Ubicar botellas, bomba y mangueras y definir el recorrido del agua."],["Preparar recipientes","Limpiar, secar y hacer los orificios para las mangueras."],["Construir el filtro","Colocar piedras y algodón para que el agua los atraviese."],["Colocar mangueras","Cortar según las distancias e introducir los extremos."],["Sellar conexiones","Silicón caliente o masilla epóxica contra fugas."],["Instalar la bomba","Ubicarla y conectar la manguera."],["Circuito eléctrico","Bomba → interruptor → fuente compatible."],["Prueba con agua limpia","Encender y verificar la circulación."],["Corregir fugas","Apagar, secar y volver a sellar."],["Agua turbia","Mezclar agua con un poco de tierra limpia."],["Filtrar","Poner el agua en el recipiente inicial y activar la bomba."],["Observar el filtro","Ver cómo se retienen las partículas."],["Recolectar","Comparar el agua final con la inicial."],["Decorar","Árboles, cartulina y rótulos."]];
+$("#mats").innerHTML=mats.map((m,i)=>`<li><label><input type="checkbox" data-m><span> ${m}</span></label></li>`).join("");
+$("#pasos").innerHTML=pasos.map(p=>`<li><b>${p[0]}.</b> ${p[1]}</li>`).join("");
+const prog=()=>{const c=$$("[data-m]");$("#prog").textContent=`(${c.filter(x=>x.checked).length}/${c.length})`};
+$$("[data-m]").forEach(c=>c.onchange=prog);prog();
+$$("#pasos li").forEach(l=>l.onclick=()=>l.classList.toggle("done"));
+/* Pestañas */
+$$(".tabs button").forEach(b=>b.onclick=()=>{$$(".tabs button,.panel").forEach(e=>e.classList.remove("on"));b.classList.add("on");$("#"+b.dataset.t).classList.add("on")});
+/* Simulador de partículas */
+const cv=$("#cv"),cx=cv.getContext("2d"),W=640;
+const PATH=[[80,190],[80,36],[320,36],[320,80]],OUT=[[320,340],[320,366],[440,366],[440,250],[560,250],[560,300]],LAY=[80,170,215,340];
+const rnd=(a,b)=>a+Math.random()*(b-a),val=id=>+$(id).value;
+const rocks=Array.from({length:44},()=>({x:rnd(282,358),y:rnd(88,164),r:rnd(6,11),c:`hsl(${rnd(25,45)},${rnd(5,15)}%,${rnd(35,60)}%)`}));
+const puffs=Array.from({length:60},()=>({x:rnd(278,362),y:rnd(222,334),r:rnd(7,13)}));
+const grains=Array.from({length:70},()=>({x:rnd(276,364),y:rnd(174,212)}));
+let P,st,lvl,on,esc=1,H=[],fr=0;
+function reset(){H=[];P=[];st={in:0,ret:0,out:0,pass:0};lvl=1;on=false;$("#pw").textContent="⏻ Encender bomba"}
+reset();
+function along(p,d){let r=d;for(let i=1;i<p.length;i++){const a=p[i-1],b=p[i],L=Math.hypot(b[0]-a[0],b[1]-a[1]);if(r<=L)return[a[0]+(b[0]-a[0])*r/L,a[1]+(b[1]-a[1])*r/L];r-=L}return null}
+function prob(l,z){const a=val("#rA"),s=val("#rP");let p;
+if(l==0)p=[.12+.07*s,.04+.03*s,.01+.01*s][z];else if(l==1)p=$("#cC").checked?[.3,.5,.55][z]:0;else p=[.5+.04*a,.3+.06*a,.08+.06*a][z];return Math.min(.97,p)}
+const jarTop=()=>405-105*Math.min(1,st.out/260);
+function step(){const pw=val("#rB"),clog=Math.min(1,st.ret/380);
+if(on&&lvl>0&&Math.random()<pw*.05*esc){P.push({s:0,d:0,x:80,y:190,z:Math.random()<.4?0:Math.random()<.58?1:2,ly:-1});st.in++;lvl-=.0012}
+const vf=pw*.8/(1+.22*val("#rA")+.07*val("#rP")+3*clog)*(on?1:.35);
+for(const p of P){
+if(p.s==0){p.d+=on?pw*.9:0;const q=along(PATH,p.d);if(q){p.x=q[0];p.y=q[1]}else{p.s=1;p.x=rnd(290,350);p.y=80}}
+else if(p.s==1){p.y+=vf;p.x=Math.max(280,Math.min(360,p.x+rnd(-.5,.5)));
+const ly=p.y>=LAY[2]?2:p.y>=LAY[1]?1:0;
+if(ly>p.ly){p.ly=ly;if(Math.random()<prob(ly,p.z)){p.s=3;st.ret++}else if(ly==2)st.pass++}
+if(p.s==1&&p.y>=LAY[3]){p.s=2;p.d=0}}
+else if(p.s==2){p.d+=pw*(on?.9:.3);const q=along(OUT,p.d);if(q){p.x=q[0];p.y=q[1]}else{p.s=4;p.x=560;p.y=300}}
+else if(p.s==4){p.y+=3;if(p.y>=jarTop()){p.s=5;st.out++}}}
+P=P.filter(p=>p.s!=5);
+const res=st.ret+st.pass;
+$("#sIn").textContent=st.in;$("#sRet").textContent=st.ret;$("#sOut").textContent=st.pass;
+$("#sEf").textContent=(res?Math.round(100*st.ret/res)+"%":"—");
+$("#sFl").textContent=Math.round(120*pw/5/(1+.25*val("#rA")+.1*val("#rP")+4*clog))+" mL/min";
+$("#sCl").textContent=Math.round(clog*100)+"%";
+if(++fr%40==0&&res>0){H.push(Math.round(100*st.ret/res));if(H.length>60)H.shift()}
+$("#est").textContent=!on?"🔴 BOMBA APAGADA":lvl<=0?"⚪ SIN AGUA SUCIA":clog>=.8?"🟠 CAMBIAR EL ALGODÓN":"🟢 FILTRANDO";
+$("#msg").textContent=!on?"Bomba apagada: el agua que ya está en el filtro baja solo por gravedad, pero más lento.":lvl<=0?"Se acabó el agua sucia. Pulsa Reiniciar para repetir.":clog>.8?"¡El algodón se está saturando! El flujo bajó mucho.":"Filtrando… más algodón retiene más, pero frena el flujo."}
+function tube(p){cx.beginPath();p.forEach((q,i)=>i?cx.lineTo(q[0],q[1]):cx.moveTo(q[0],q[1]));cx.strokeStyle="#0c3d7a";cx.lineWidth=13;cx.stroke();cx.strokeStyle="rgba(120,200,255,.4)";cx.lineWidth=7;cx.stroke()}
+function jar(x,y,w,h){cx.beginPath();cx.roundRect(x,y,w,h,12);cx.strokeStyle="#9fd2ff";cx.lineWidth=3;cx.stroke()}
+function txt(t,x,y){cx.fillStyle="#cfe8ff";cx.font="600 13px sans-serif";cx.textAlign="center";cx.fillText(t,x,y)}
+function draw(){cx.clearRect(0,0,W,450);cx.lineCap=cx.lineJoin="round";tube(PATH);tube(OUT);
+const res=st.ret+st.pass,t=res?st.pass/res:0,c=[90,200,240].map((v,i)=>Math.round(v+([160,122,69][i]-v)*t));
+cx.fillStyle="rgba(160,122,69,.75)";cx.fillRect(34,405-215*lvl,92,215*lvl);
+const oh=105*Math.min(1,st.out/260);cx.fillStyle=`rgba(${c},.8)`;cx.fillRect(504,405-oh,112,oh);
+jar(30,190,100,215);jar(500,290,120,115);jar(270,80,100,260);
+cx.save();cx.beginPath();cx.rect(272,82,96,256);cx.clip();
+rocks.slice(0,Math.round(val("#rP")*4.4)).forEach(r=>{cx.fillStyle=r.c;cx.beginPath();cx.arc(r.x,r.y,r.r,0,7);cx.fill()});
+if($("#cC").checked){cx.fillStyle="#0d1b26";cx.fillRect(272,170,96,45);grains.forEach(g=>{cx.fillStyle="#3b4f5e";cx.fillRect(g.x,g.y,3,3)})}
+cx.fillStyle=`rgba(250,252,255,${.3+.065*val("#rA")})`;puffs.forEach(f=>{cx.beginPath();cx.arc(f.x,f.y,f.r,0,7);cx.fill()});
+cx.restore();
+for(const p of P){cx.fillStyle=p.s==3?"#6b4a22":"#b98b4e";cx.beginPath();cx.arc(p.x,p.y,[3,2.2,1.4][p.z],0,7);cx.fill()}
+cx.fillStyle="#123a6e";cx.strokeStyle="#9fd2ff";cx.lineWidth=2;cx.beginPath();cx.roundRect(52,92,56,34,6);cx.fill();cx.stroke();
+cx.fillStyle=on?"#3cff8a":"#ff4d4d";cx.beginPath();cx.arc(62,109,5,0,7);cx.fill();txt("bomba",86,113);
+txt("Agua sucia",80,435);txt("Agua filtrada",560,435);txt("Piedras",425,130);txt(val("#rP")?"":"",0,0);txt("Carbón (opcional)",440,197);txt("Algodón",428,285);hist()}
+function hist(){const g=$("#hist").getContext("2d");g.fillStyle="#061426";g.fillRect(0,0,640,110);g.setLineDash([6,6]);g.strokeStyle="#ffd36b";g.lineWidth=1.5;g.beginPath();g.moveTo(0,45);g.lineTo(640,45);g.stroke();g.setLineDash([]);g.strokeStyle="#19d3f0";g.lineWidth=3;g.beginPath();H.forEach((v,i)=>i?g.lineTo(i*11,105-v):g.moveTo(0,105-v));g.stroke()}
+function loop(){step();draw();requestAnimationFrame(loop)}loop();
+$$(".esc button").forEach(b=>b.onclick=()=>{esc=+b.dataset.e;$$(".esc button").forEach(x=>x.classList.toggle("on",x===b))});
+$("#filtro").onclick=()=>$("#btnDemo").click();
+$("#frm").onsubmit=e=>{e.preventDefault();$("#ok").textContent="¡Gracias! Este formulario es una demostración: el mensaje no se envía a ningún servidor."};
+$("#pw").onclick=()=>{on=!on;$("#pw").textContent=on?"⏻ Apagar bomba":"⏻ Encender bomba"};$("#rs").onclick=reset;
+[["A","A"],["P","P"],["B","B"]].forEach(([i])=>$("#r"+i).oninput=e=>$("#v"+i).textContent=e.target.value);
+/* Demo animada del hero */
+let corriendo=false;
+$("#btnDemo").onclick=function(){if(corriendo)return;corriendo=true;this.textContent="Bombeando…";
+const g=$("#gota"),l=$("#limpia"),s=$("#sucia");let t=0;
+const id=setInterval(()=>{t++;g.setAttribute("opacity",1);g.setAttribute("cy",20+(t%20)*14);
+s.setAttribute("y",200+t*.5);s.setAttribute("height",Math.max(0,146-t*.5));
+l.setAttribute("y",340-t*.45);l.setAttribute("height",6+t*.45);
+if(t>=90){clearInterval(id);g.setAttribute("opacity",0);corriendo=false;$("#btnDemo").textContent="Reiniciar demostración";
+s.setAttribute("y",200);s.setAttribute("height",146);l.setAttribute("y",340);l.setAttribute("height",6)}},60)};
+/* Código Python */
+$("#cod").textContent=`import random
+
+class CapaFiltrante:
+    """Una capa del filtro: piedras, carbón o algodón."""
+    def __init__(self, nombre, prob_grande, prob_mediana, prob_pequena):
+        self.nombre = nombre
+        self.prob = (prob_grande, prob_mediana, prob_pequena)
+    def retiene(self, tamano):  # 0 grande, 1 mediana, 2 pequeña
+        return random.random() < min(.97, self.prob[tamano])
+
+class Bomba:
+    """Convierte energía eléctrica en movimiento del agua."""
+    def __init__(self):
+        self.encendida = False
+    def conmutar(self):
+        self.encendida = not self.encendida
+
+class Purificador:
+    """Controlador: si la bomba está encendida, filtra."""
+    def __init__(self, bomba, capas):
+        self.bomba, self.capas = bomba, capas
+    def filtrar(self, tamano):
+        if not self.bomba.encendida:
+            return "Bomba apagada"
+        for capa in self.capas:
+            if capa.retiene(tamano):
+                return "Retenida en " + capa.nombre
+        return "Pasó al agua filtrada"
+
+bomba = Bomba(); bomba.conmutar()
+filtro = Purificador(bomba, [CapaFiltrante("piedras", .47, .19, .06),
+                             CapaFiltrante("algodón", .66, .54, .32)])
+print(filtro.filtrar(tamano=2))`;
+$("#copy").onclick=async e=>{try{await navigator.clipboard.writeText($("#cod").textContent);e.target.textContent="Copiado"}catch{e.target.textContent="Selecciona y copia"}};
+
+/* Mejoras de navegación */
+const onScroll=()=>{const m=document.documentElement.scrollHeight-innerHeight;$("#bar").style.width=(m>0?scrollY/m*100:0)+"%";$("#top").classList.toggle("on",scrollY>600)};
+addEventListener("scroll",onScroll,{passive:true});onScroll();
+$("#top").onclick=()=>scrollTo({top:0});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)$$(".nav nav a").forEach(a=>a.classList.toggle("act",a.getAttribute("href")=="#"+e.target.id))}),{rootMargin:"-45% 0px -50% 0px"});
+$$("main section[id]").forEach(s=>io.observe(s));
+$$(".gal img").forEach(i=>i.onclick=()=>{$("#lb img").src=i.src;$("#lb img").alt=i.alt;$("#lb").classList.add("on")});
+$("#lb").onclick=()=>$("#lb").classList.remove("on");
+addEventListener("keydown",e=>{if(e.key=="Escape")$("#lb").classList.remove("on")});
+
+</script>
+</body>
+</html>
